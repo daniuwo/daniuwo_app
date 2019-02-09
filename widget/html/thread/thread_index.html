@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>帖子详情页</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <style>
+    header{
+        height: 50px;
+        line-height: 50px;
+        display: flex;
+        justify-content: space-between;
+        justify-items: center;
+        color: #fff;
+        background: #03A9F4;
+        font-size: 20px;
+    }
+    header a{
+        padding: 0 18px;
+        color: #fff;
+    }
+    header a .iconfont{
+        font-size: 20px;
+    }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <a tapmode="hover" href="javascript:;" onclick="api.closeWin();">
+            <i class="iconfont icon-fanhui"></i>
+        </a>
+        <div>帖子详情</div>
+        <a tapmode="hover" href="javascript:;">
+            <i class="iconfont icon-yduigengduo"></i>
+        </a>
+    </header>
+    <script src="../../script/api.js"></script>
+    <script>
+    apiready = function(){
+        // 打开farme
+        api.openFrame({
+            name: 'thread_index_farme',
+            url: '../../html/thread/thread_index_farme.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto',
+                marginTop:$api.dom('#header').offsetHeight,
+            },
+            pageParam:{
+                tid:api.pageParam.tid
+            }
+        });
+    }
+        
+    </script>
+</body>
+</html>

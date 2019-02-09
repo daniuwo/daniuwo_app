@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <style>
+        html,body{
+            background: #fff;
+            height: 100%;
+        }
+        header{
+            height: 50px;
+            line-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.4rem;
+        }
+        header a{
+            color: #03A9F4;
+            padding: 0 18px;
+            font-size: 1.2rem;
+        }
+        header a .iconfont{
+            font-size: 1.4rem;
+        }
+        .login_input {
+    border: 0;
+    border-bottom: 0.08rem solid #d9e6ff;
+    line-height: 38px;
+    width: 100%;
+    font-size: 1.2rem;
+    color: #77a5f0;
+    font-weight: bold;
+}
+.login_button {
+    background: #2196F3;
+    color: #fff;
+    line-height: 45px;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    box-shadow: 0 9px 32px -13px #2196F3;
+}
+.login_zhaohui {
+    color: #77a5f0;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.login_input::-webkit-input-placeholder{
+	color: #77a5f0;
+}
+.login_icon{
+	border-radius: 50%;
+	height: 41px;
+	line-height: 40px;
+	margin-right: 15px;
+}
+.login_icon:last-child{
+	margin-right: 0;
+}
+.login_icon div{
+	width: 41px;
+	height: 41px;
+	line-height: 40px;
+}
+.login_icon div i{
+	font-size: 20px;
+}
+.login_icon_qq{
+	border: 0.08rem solid rgba(3, 169, 244, 0.5);
+	color: #03A9F4;
+	text-shadow: 0 1px 12px rgba(3, 169, 244, 0.54);
+	box-shadow: inset 0px 1px 14px -4px rgba(3, 169, 244, 0.54), 0px 1px 14px -4px rgba(3, 169, 244, 0.54);
+}
+.login_icon_wb{
+	border: 0.08rem solid rgba(244, 67, 54, 0.5);
+	color: #F44336;
+	text-shadow: 0 1px 12px rgba(244, 67, 54, 0.55);
+	box-shadow: inset 0px 1px 14px -4px rgba(244, 67, 54, 0.54), 0px 1px 14px -4px rgba(244, 67, 54, 0.54);
+}
+.login_icon_wx {
+	border: 0.08rem solid rgba(76, 175, 80, 0.5);
+	color: #4CAF50;
+	text-shadow: 0 1px 12px rgba(76, 175, 80, 0.54);
+	box-shadow: inset 0px 1px 14px -4px rgba(76, 175, 80, 0.54), 0px 1px 14px -4px rgba(76, 175, 80, 0.54);
+}
+.login_icon_tb {
+	border: 0.08rem solid rgba(255, 80, 0, 0.5);
+	color: #ff5000;
+	text-shadow: 0 1px 12px #ff5000;
+	box-shadow: inset 0px 1px 14px -4px rgba(255, 80, 0, 0.54), 0px 1px 14px -4px rgba(255, 80, 0, 0.54);
+}
+.login_icon_github {
+	border: 0.08rem solid rgba(36, 41, 46, 0.5);
+	color: #24292e;
+	text-shadow: 0 1px 12px rgba(36, 41, 46, 0.54);
+	box-shadow: inset 0px 1px 14px -4px rgba(36, 41, 46, 0.54), 0px 1px 14px -4px rgba(36, 41, 46, 0.54);
+}
+    </style>
+</head>
+<body>
+    <div style="text-align: center;">
+        <img src="../../image/register.svg" style="margin-top:2rem;width: 6rem;">
+    </div>
+    <div style="margin:2rem">
+        <input class="login_input" type="text" name="user" placeholder="用户名">
+    </div>
+    <div style="margin:2rem">
+        <input class="login_input" type="text" name="email" placeholder="邮箱">
+    </div>
+    
+    <div style="margin:2rem">
+        <input class="login_input" type="password" name="pass1" placeholder="密码">
+    </div>
+    <div style="margin:2rem">
+        <input class="login_input" type="password" name="pass2" placeholder="重复密码">
+    </div>
+    
+    
+    <div style="margin:2rem 2rem 0">
+        <button class="login_button" tapmode onclick="login()" id="login">注册</button>
+    </div>
+    <div style="margin: 25px 2rem 10px;display: flex;justify-content: space-between;">
+        <a href="http://hy.cn/user/repass.html" class="login_zhaohui">已有账号重新登录</a>
+    </div>
+</body>
+</html>
+<script src="../../script/api.js"></script>
+<script>
+    apiready = function(){
+
+    }
+    function login()
+    {
+        var btn_login = $api.byId('login');
+        $api.text(btn_login, '注册中...');
+        var user = $api.val($api.dom('[name="user"]'));
+        var email = $api.val($api.dom('[name="email"]'));
+        var pass1 = $api.val($api.dom('[name="pass1"]'));
+        var pass2 = $api.val($api.dom('[name="pass2"]'));
+        
+        api.ajax({
+            url: WWW+'app/user_add',
+            method: 'post',
+            data:{
+                values:{
+                    "user":user,
+                    "email":email,
+                    "pass1":pass1,
+                    "pass2":pass2
+                }
+            },
+            timeout: 30,
+            dataType: 'json',
+            returnAll:false
+        },function(ret,err){
+            console.log(JSON.stringify(ret))
+            if (ret) {
+                // 登录成功 
+                if(ret.error){
+                    $api.setStorage('token', ret.token);
+                    api.sendEvent({
+                        name: 'islogin'
+                    });
+                    api.setPrefs({
+                        key: 'islogin',
+                        value: true
+                    });
+                    // 提示
+                    api.toast({
+                        msg:'注册成功',
+                        duration: '1200',
+                        localtion: 'middle'
+                    });
+                    // 一秒后关闭登录页面
+                    setTimeout(function(){
+                        api.closeWin({
+                            name: 'login'
+                        });
+                    },1000)
+                }else{
+                    $api.text(btn_login, '注册');
+                    api.toast({
+                    　　msg: ret.info,
+                    　　duration: 1000,
+                    　　location: 'middle'
+            　　　  });
+                }
+            } else {
+                api.alert({
+                    msg:('错误码：'+err.code+'；错误信息：'+err.msg+'网络状态码：'+err.statusCode)
+                });
+            };
+        });
+    }
+    function login_no(){
+        api.toast({
+            msg:'接口开发中',
+            duration: '1200',
+            localtion: 'middle'
+        });
+    }
+</script>

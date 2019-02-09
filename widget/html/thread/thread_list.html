@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>帖子列表</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css" />
+    <link rel="stylesheet" href="./thread_list.css">
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script src="../../script/artTemplate.js"></script>
+    <style>
+        #loading{
+            text-align: center;
+            padding:10px;
+
+        }
+        .loading_more:after{
+            content: '加载中...'
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="forum_info">
+        <div class="forum_thread">
+            <div style="background-image:url(http://bpic.588ku.com/back_pic/04/43/61/69585352e75974a.jpg);" class="forum_thread_header">
+                <hader class="hader" id="navbar">
+                    <a tapmode="hover" href="javascript:api.closeWin({name: 'forun_index'});;">
+                        <i class="iconfont icon-fanhui"></i>
+                    </a>
+                    <div class="navbar-center">
+                        <span class="navbar-title form-title"></span>
+                    </div>
+                    <a tapmode="hover" href="JavaScript:;">
+                        <i class="iconfont icon-yduigengduo"></i>
+                    </a>
+                </hader>
+                <div class="forumg">
+                    <div>
+                        <div class="title">
+                            <img class="forun_icon" src="http://192.168.1.28/upload/forum1.png?s=1549184317" alt=""
+                                onerror="this.src='http://hy.cn/upload/de.png'">
+                            <h3>分类名称</h3>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="forun_info">
+                            <div>
+                                <h3 class="forum_color">0</h3>
+                                <p>主题</p>
+                            </div>
+                            <div>
+                                <h3 class="forum_color">0</h3>
+                                <p>回复</p>
+                            </div>
+                            <div>
+                                <h3 class="forum_color">0</h3>
+                                <p>关注</p>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="javascript:;" data-ydui-actionsheet="{target:'#ajax_post_page',closeElement:'#cancel-editor'}"
+                                onclick="ajax_post('http://hy.cn/post.html','post')" class="btn btn-icon">
+                                <div><i class="iconfont icon--jia"></i></div>
+                            </a>
+                            <a href="javascript:;" class="btn btn-icon" data-ydui-actionsheet="{target:'#form_fenx',closeElement:'#cancel'}">
+                                <div><i class="iconfont icon-fenxiang"></i></div>
+                            </a>
+                            <a href="javascript:;" class="btn btn-icon" data-ydui-actionsheet="{target:'#gengduo',closeElement:'#cancel'}">
+                                <div><i class="iconfont icon-yduigengduo"></i></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- nav -->
+        <div class="forum_thread_nav" style="box-shadow:0 3px 17px -7px rgba(96, 125, 139, 0.31);">
+            <a class="active" href="http://hy.cn/f/1.html" data-pjax="">全部</a>
+            <a class="" href="http://hy.cn/f/1/new.html" data-pjax="">最新</a>
+            <a class="" href="http://hy.cn/f/1/btime.html" data-pjax="">回复</a>
+            <a class="" href="http://hy.cn/plugins/digest/1.html" data-pjax="">精华</a>
+            <div class="right">
+                <a href="javascript:;" data-ydui-actionsheet="{target:'#zifenlei',closeElement:'#cancel'}">
+                    <i class="iconfont icon-leimupinleifenleileibie"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- 骨架 -->
+    <script id="tmp-forum-info" type="text/html">
+        <div class="forum_thread">
+                <div style="background-image:url(http://bpic.588ku.com/back_pic/04/43/61/69585352e75974a.jpg);" class="forum_thread_header">
+                    <hader class="hader" id="navbar">
+                        <a tapmode="hover" href="javascript:api.closeWin({name: 'forun_index'});;">
+                            <i class="iconfont icon-fanhui"></i>
+                        </a>
+                        <div class="navbar-center">
+                            <span class="navbar-title form-title"></span>
+                        </div>
+                        <a tapmode="hover" href="JavaScript:;">
+                            <i class="iconfont icon-yduigengduo"></i>
+                        </a>
+                    </hader>
+                    <div class="forumg">
+                        <div>
+                            <div class="title">
+                                <img class="forun_icon" src="http://192.168.1.28/upload/forum1.png?s=1549184317" alt="" onerror="this.src='http://hy.cn/upload/de.png'">
+                                <h3>{{ forum_data.name }}</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="forun_info">
+                                <div>
+                                    <h3 class="forum_color">{{ forum_data.threads }}</h3>
+                                    <p>主题</p>
+                                </div>
+                                <div>
+                                    <h3 class="forum_color">{{ forum_data.posts }}</h3>
+                                    <p>回复</p>
+                                </div>
+                                <div>
+                                    <h3 class="forum_color">0</h3>
+                                    <p>关注</p>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="javascript:;" data-ydui-actionsheet="{target:'#ajax_post_page',closeElement:'#cancel-editor'}"
+                                    onclick="ajax_post('http://hy.cn/post.html','post')" class="btn btn-icon">
+                                    <div><i class="iconfont icon--jia"></i></div>
+                                </a>
+                                <a href="javascript:;" class="btn btn-icon" data-ydui-actionsheet="{target:'#form_fenx',closeElement:'#cancel'}">
+                                    <div><i class="iconfont icon-fenxiang"></i></div>
+                                </a>
+                                <a href="javascript:;" class="btn btn-icon" data-ydui-actionsheet="{target:'#gengduo',closeElement:'#cancel'}">
+                                    <div><i class="iconfont icon-yduigengduo"></i></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- nav -->
+            <div class="forum_thread_nav" style="box-shadow:0 3px 17px -7px rgba(96, 125, 139, 0.31);">
+                <a class="active" href="http://hy.cn/f/1.html" data-pjax="">全部</a>
+                <a class="" href="http://hy.cn/f/1/new.html" data-pjax="">最新</a>
+                <a class="" href="http://hy.cn/f/1/btime.html" data-pjax="">回复</a>
+                <a class="" href="http://hy.cn/plugins/digest/1.html" data-pjax="">精华</a>
+                <div class="right">
+                    <a href="javascript:;" data-ydui-actionsheet="{target:'#zifenlei',closeElement:'#cancel'}">
+                        <i class="iconfont icon-leimupinleifenleileibie"></i>
+                    </a>
+                </div>
+            </div>
+    </script>
+    <!-- 置顶 -->
+    <!-- 列表 -->
+    <div id="forum_list" class="forum_list"></div>
+    <!-- 加载更多动画 -->
+    <div id="loading">
+        <div class="loading_more"></div>
+    </div>
+    <div></div>
+    <!-- 模板 -->
+    <script id="tmp-forum-list" type="text/html">
+        <%for (var i =0;i < list.length;i++){%>
+            <div class="nd_list_1">
+                <div class="list_header">
+                    <a href="#" data-pjax="">
+                        <img src="<%=list[i].avater%>" alt="" style="border:1px solid #d0d0d0;">
+                    </a>
+                    <div class="title">
+                        <div>
+                            <div class="jcenter">
+                                <a href="#" data-pjax=""><%=list[i].user%></a>
+                                <!-- 性别 -->
+                                <!-- 没设置 -->
+                                <span class="lv no">
+                                    <i class="iconfont icon-xingbie"></i>
+                                </span>
+                                <!-- 等级 -->
+                                <span class="lv max">Lv.<%=list[i].lv%></span>
+                                <!-- 用户组 -->
+                                <span class="lv group" style="color:#FFF;background:#ff6a00;box-shadow: 0 1px 10px -2px #ff6a00;"><%=list[i].group%></span>
+                            </div>
+                            <p><%=list[i].atime%></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="list_content" style="position: relative;">
+                    <% if ( list[i].jing == true ) { %>
+                    <img class="tuzhang" src="http://192.168.1.28/View/nd_mobile/img/stamp/001.gif" alt="">
+                    <% } %>
+                    <div class="content_img_list">
+                        <div class="m-grids-1">
+                            <div class="thread_content">
+                                <a href="javascript:;" tapmode="hover" onclick="on_thread_index(<%=list[i].tid%>)">
+                                    <span><%=list[i].title%></span>
+                                </a>
+                                <a href="http://hy.cn/t/251.html" data-pjax="">
+                                    <div class="summary"><%=list[i].summary%></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list_footer">
+                    <div class="m-grids-3">
+                        <a href="http://hy.cn/t/251.html#thread_post" data-pjax="" class="grids-item">
+                            <div class="grids-txt">
+                                <span>
+                                    <i class="iconfont icon-huifu1"></i> <%=list[i].posts%>回复</span>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="grids-item">
+                            <div class="grids-txt">
+                                <span>
+                                    <i class="iconfont icon-yduizuji"></i> <%=list[i].views%>人踩过</span>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="grids-item">
+                            <div class="grids-txt">
+                                <span class="zan" onclick="tp('thread1',251,this)">
+                                    <i class="iconfont icon-zansel"></i>
+                                    <p></p><span><%=list[i].goods%>喜欢</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </script>
+    <!-- 数据 -->
+    <script>
+        var pageid = 0;         // 页码
+        var html;               // html
+        var fid = 1;            // 论坛id
+        apiready = function () {
+            fid = api.pageParam.fid;
+            pageid += 1;
+            api.ajax({
+                url: WWW + 'app/thread_list/?pageid=' + pageid + "&fid=" + fid,
+                method: 'get',
+                timeout: 30,
+                dataType: 'json',
+                returnAll: false
+            }, function (ret, err) {
+                if (ret) {
+                    // 论坛信息
+                    var forum = template('tmp-forum-info', ret);
+                    document.getElementById('forum_info').innerHTML = forum;
+                    // 列表
+                    html = template('tmp-forum-list', ret);
+                    document.getElementById('forum_list').innerHTML = html;
+                } else {
+                    api.alert({
+                        msg: ('错误码：' + err.code + '；错误信息：' + err.msg + '网络状态码：' + err.statusCode)
+                    });
+                };
+            });
+            /*监听页面滑动到底部事件*/
+            api.addEventListener({
+                name: 'scrolltobottom',
+                extra: {
+                    threshold: 100            //设置距离底部多少距离时触发，默认值为0，数字类型
+                }
+            }, function (ret, err) {
+                // 加载更多
+                ajax_forum_list()
+            });
+        }
+
+        var datalist = {
+            list: [
+                { user: 'Admin', lv: 'Max', group: "管理员", avater: "http://192.168.1.28/upload/avatar/21232f297a57a5a743894a0e4a801fc3-b.jpg", title: '测试文章标题', atime: "1小时前", gaiyao: '文章概要........', posts: '10', views: 5, goods: 20, jing: true },
+                { user: '哄着自己玩', lv: '10', group: "天下行", avater: "http://192.168.1.28/upload/avatar/21232f297a57a5a743894a0e4a801fc3-b.jpg", title: '来个标题是事实上司看看', atime: "2小时前", gaiyao: '文章概要........', posts: '1120', views: 500, goods: 203, jing: false },
+                { user: '哄着自己玩', lv: '10', group: "天下行", avater: "http://192.168.1.28/upload/avatar/21232f297a57a5a743894a0e4a801fc3-b.jpg", title: '来个标题是事实上司看看', atime: "2小时前", gaiyao: '文章概要........', posts: '1120', views: 500, goods: 203, jing: false },
+                { user: '哄着自己玩', lv: '10', group: "天下行", avater: "http://192.168.1.28/upload/avatar/21232f297a57a5a743894a0e4a801fc3-b.jpg", title: '来个标题是事实上司看看', atime: "2小时前", gaiyao: '文章概要........', posts: '1120', views: 500, goods: 203, jing: false },
+                { user: '哄着自己玩', lv: '10', group: "天下行", avater: "http://192.168.1.28/upload/avatar/21232f297a57a5a743894a0e4a801fc3-b.jpg", title: '来个标题是事实上司看看', atime: "2小时前", gaiyao: '文章概要........', posts: '1120', views: 500, goods: 203, jing: false },
+                { user: '哄着自己玩', lv: '10', group: "天下行", avater: "http://192.168.1.28/upload/avatar/21232f297a57a5a743894a0e4a801fc3-b.jpg", title: '来个标题是事实上司看看', atime: "2小时前", gaiyao: '文章概要........', posts: '1120', views: 500, goods: 203, jing: false },
+                { user: '哄着自己玩', lv: '10', group: "天下行", avater: "http://192.168.1.28/upload/avatar/21232f297a57a5a743894a0e4a801fc3-b.jpg", title: '来个标题是事实上司看看', atime: "2小时前", gaiyao: '文章概要........', posts: '1120', views: 500, goods: 203, jing: false },
+                { user: '哄着自己玩', lv: '10', group: "天下行", avater: "http://192.168.1.28/upload/avatar/21232f297a57a5a743894a0e4a801fc3-b.jpg", title: '来个标题是事实上司看看', atime: "2小时前", gaiyao: '文章概要........', posts: '1120', views: 500, goods: 203, jing: false },
+            ]
+        }
+        // var html = template('tmp_forunlist', datalist);
+        // document.getElementById('forumlist').innerHTML = html;
+        // 打开帖子页面
+        function on_thread_index(tid) {
+            api.openWin({
+                name: 'thread_index',
+                url: '../../html/thread/thread_index.html',
+                bounces: false,
+                pageParam: { tid: tid },
+                animation: {
+                    type: "movein",                //动画类型（详见动画类型常量）
+                    subType: "from_right",       //动画子类型（详见动画子类型常量）
+                    duration: 150                //动画过渡时间，默认300毫秒
+                }
+            });
+        }
+        // 加载更多
+        function ajax_forum_list() {
+            pageid += 1
+            api.ajax({
+                url: WWW + 'app/thread_list?pageid=' + pageid + "&fid=" + fid,
+                method: 'get',
+                timeout: 30,
+                dataType: 'json',
+                returnAll: false
+            }, function (ret, err) {
+                if (ret) {
+                    var html = template('tmp-forum-list', ret);
+                    document.getElementById('forum_list').innerHTML += html;
+                    if (ret.pageid > ret.page_count) {
+                        $api.text($api.byId('loading'), '-我是有底线的-');
+                        api.removeEventListener({ name: 'scrolltobottom' });
+                    }
+                } else {
+                    api.alert({
+                        msg: ('错误码：' + err.code + '；错误信息：' + err.msg + '网络状态码：' + err.statusCode)
+                    });
+                };
+            });
+
+        }
+    </script>
+</body>
+
+</html>

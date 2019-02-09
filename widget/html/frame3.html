@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+        .empty{ text-align: center; padding: 120px 0; }
+    </style>
+</head>
+<body>
+    <div class="empty">
+        <button tapmode onclick="loginout()">点击退出登录</button>
+    </div>
+    <script>
+    apiready = function(){
+        
+    }
+        function loginout()
+        {
+            //api.removePrefs移除登录状态
+            api.removePrefs({
+                key: 'islogin'
+            });
+            api.toast({
+        　　　　　　msg:'退出成功',
+        　　　　　　duration: '1300',
+        　　　　　　localtion: 'middle'
+    　　　　 });
+            setTimeout(function(){
+                api.setFrameGroupIndex({
+                    name: 'group',
+                    index: 0
+                });
+            })
+        }
+    </script>
+</body>
+</html>

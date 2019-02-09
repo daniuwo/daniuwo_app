@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>开发</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css" />
+    <script src="../../script/artTemplate.js"></script>
+
+    <style>
+
+        .container .thread_header {
+            background-color: #fff;
+            padding: 10px;
+            font-size: 20px;
+            box-shadow: 0 3px 17px -7px rgba(96, 125, 139, 0.31);
+        }
+
+        .container .thread_header p {
+            position: relative;
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .container .thread_header h1 {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .container .thread_header p span {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .container .thread_user .userimg {
+            display: flex;
+            align-items: center;
+        }
+
+        .container .thread_user,
+        .container .thread_forum {
+            position: relative;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .container .thread_user .user {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container .thread_user .jcenter {
+            display: flex;
+            align-items: center;
+        }
+
+        .container .thread_user .user .user_name {
+            text-transform: capitalize;
+            font-size: 16px;
+            color: #444;
+        }
+
+        .container .thread_user img,
+        .container .thread_forum img {
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .container .thread_content {
+            position: relative;
+            background: #fff;
+            padding: 10px;
+            font-size: 17px;
+            word-break: break-all;
+            word-wrap: break-word;
+            margin: 0 10px;
+            border-radius: 5px;
+            box-shadow: 0 3px 17px -7px rgba(96, 125, 139, 0.31);
+        }
+        .container .thread_content img{
+            max-width: 100%;
+        }
+        .container .thread_user {
+            position: relative;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .container .thread_footer {
+            margin: 0 10px;
+            border-radius: 5px;
+            box-shadow: 0 3px 17px -7px rgba(96, 125, 139, 0.31);
+        }
+
+        .container .thread_footer .thread_forum {
+            border-radius: 5px;
+            background: #fff;
+            margin-top: 10px;
+        }
+
+        .container .thread_footer .forumimg {
+            align-items: center;
+            display: flex;
+        }
+
+        .container .thread_forum .title {
+            width: 100%;
+        }
+
+        .container .thread_forum .title h2 {
+            font-size: 1.2rem;
+        }
+
+        .container .thread_forum .title p {
+            font-size: 12px;
+        }
+
+        .container .thread_forum .guanzu {
+            width: 60px;
+            border: 1px solid #cbe8f7;
+            padding: 4px 2px;
+            text-align: center;
+            color: #03A9F4;
+            border-radius: 1.5px;
+            font-size: 14px;
+        }
+
+        .xintie li {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            font-size: 14px;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .xintie li .user_img {
+            display: flex;
+            align-items: center;
+        }
+
+        .xintie li a {
+            width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #444;
+        }
+
+        .xintie li em {
+            color: #9a9a9a;
+        }
+
+        .xintie li .user_img img {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .no {
+            color: #fff;
+            background: #929292;
+        }
+
+        .lv {
+            margin-top: 2px;
+            margin-left: 4px;
+            font-size: 12px;
+            padding: 2px 3px;
+            overflow: hidden;
+            border-radius: 1.5px;
+            display: inline-flex;
+            height: 15px;
+            line-height: 15px;
+        }
+
+        .max {
+            border-radius: 1.5px;
+            padding: 2px 4px;
+            box-shadow: 0 1px 10px -2px #8d4fef;
+            background: #8d4fef;
+            font-size: 12px;
+            color: #fff;
+            animation: changeshadow 1.3s ease-in infinite;
+            -webkit-animation: changeshadow 1.3s linear infinite;
+            -moz-animation: changeshadow 1.3s linear infinite;
+            -ms-animation: changeshadow 1.3s linear infinite;
+            -o-animation: changeshadow 1.3s linear infinite;
+        }
+        .h2_name {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        .h2_name h2 {
+            font-size: 1.2rem;
+            color: #444;
+        }
+
+        /* 用户评论 */
+        .post_nav {
+    position: relative;
+    padding: 0 10px;
+    margin-top: 10px;
+    line-height: 45px;
+    font-size: 16px;
+    background: #fff;
+    margin: 0 10px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 -1px 17px -7px rgba(96, 125, 139, 0.31);
+}
+.post_info::after,{
+    position: absolute;
+    z-index: 1;
+    bottom: -1px;
+    width: 100%;
+    height: 1px;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    left: 0;
+    border-bottom: 1px solid #e6e6e6;
+    content: '';
+    box-sizing: content-box;
+}
+.post_nav .post_sort {
+    position: absolute;
+    right: 10px;
+    top: 0;
+}
+
+.post_nav .post_sort span {
+    margin-left: 10px;
+    display: initial;
+}
+
+.post_nav .post_sort .active {
+    position: relative;
+    padding: 5px;
+}
+.post_nav .post_sort .active a::after {
+    content: '';
+    position: absolute;
+    bottom: 1px;
+    height: 2px;
+    width: 20px;
+    background: #03A9F4;
+    border-radius: 50px;
+    left: 10px;
+}
+.post_nav .post_sort .active a {
+    color: #2196F3;
+}
+.no_thread {
+    text-align: center;
+    padding: 30px;
+    background: #fff;
+    color: #b9b9b9;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+}
+.no_thread i {
+    font-size: 40px;
+}
+#post_list {
+    margin: 0 10px 0;
+    background: #fff;
+    border-radius: 0px 0px 5px 5px;
+    box-shadow: 0 3px 17px -7px rgba(96, 125, 139, 0.31);
+}
+    </style>
+</head>
+
+<body>
+
+    <div id="thread"></div>
+    <script id="tmp-thread" type="text/html">
+    <div class="container">
+        <div class="thread_header">
+            <h1>{{ Thread.title }}</h1>
+            <p>
+                <a href="http://hy.cn/f/1.html" data-pjax="">{{ forum_data.name }}</a>
+                <span>评论{{ Thread.posts }} 浏览{{ Thread.views }}</span>
+            </p>
+        </div>
+        <div class="thread_user">
+            <a class="userimg" href="http://hy.cn/u/admin.html" data-pjax="">
+                <img src="http://192.168.1.28/{{ Thread.avatar.b }}" alt="admin">
+            </a>
+            <div class="user">
+                <div>
+                    <div class="jcenter">
+                        <span class="user_name">{{ Thread.user }}</span>
+                        <!-- 性别 -->
+                        <!-- 没设置 -->
+                        <span class="lv no">
+                            <i class="iconfont icon-xingbie"></i>
+                        </span>
+                        <!-- 等级 -->
+                        <span class="lv max">Lv.Max</span>
+                        <!-- 用户组 -->
+                        <span class="lv group" style="color:#FFF;background:#ff6a00;box-shadow: 0 1px 10px -2px #ff6a00;">管理员</span>
+
+                    </div>
+                    <p> {{ Thread.atime }} </p>
+                </div>
+            </div>
+        </div>
+        <!-- 内容 -->
+        <article class="thread_content">
+            {{@ post_data.content }}
+        </article>
+        <!-- 板块关注 -->
+        <div class="thread_footer">
+            <div class="thread_forum" style="background: #fff;margin-top: 10px;">
+                <div class="forumimg">
+                    <img src="http://192.168.1.28/upload/de.png" onerror="this.src='http://192.168.1.28/upload/forum{{ forum_data.id }}.png'">
+                </div>
+                <div class="title">
+                    <a href="http://hy.cn/f/7.html" data-pjax="">
+                        <h2>{{ forum_data.name }}</h2>
+                        <p>主题:{{ forum_data.threads }} 帖子:{{ forum_data.posts }} </p>
+                    </a>
+                </div>
+                <div class="guanzu">
+                    <a href="javascript:;" onclick="follow_forum(7,'g',this)">关注</a>
+                </div>
+            </div>
+        </div>
+        <div class="h2_name">
+            <h2>楼主帖子</h2>
+        </div>
+        <!-- 楼主相关 -->
+        <article class="m-list list-theme1" style="background: #fff;border-radius: 5px;margin: 10px;padding: 10px;box-shadow: 0 3px 17px -7px rgba(96, 125, 139, 0.31);">
+            <ul class="xintie">
+                <% for(var i = 0; i < lou_thread.length; i++){ %>
+                <li>
+                    <div class="user_img"><img src="upload/avatar/21232f297a57a5a743894a0e4a801fc3-c.jpg" alt=""></div><a
+                        data-pjax="" href="http://hy.cn/t/251.html"><%= lou_thread[i].title %> <em><%= lou_thread[i].atime %></em></a>
+                </li>
+                <% } %>
+            </ul>
+        </article>
+        <!-- 用户评论 -->
+        <div class="post_nav" id="thread_post">
+            <div class="post_info">
+                共有0条评论
+                <div class="post_sort">
+                    <span class=""><a href="http://hy.cn/t/251.html?order=desc#thread_post">最新</a></span>
+                    <span class="active"><a href="http://hy.cn/t/251.html#thread_post">最早</a></span>
+                </div>
+            </div>
+        </div>
+        <div id="post_list">
+
+        </div>
+        <div class="no_thread" style="margin-top: 0">
+            <i class="iconfont icon-meiyouguanzhu"></i>
+            <p>还没有任何评论!</p>
+        </div>
+    </div>
+</script>
+</body>
+
+</html>
+<script src="../../script/api.js"></script>
+<!-- 模板 -->
+
+<script>
+    loding_show();
+    apiready = function () {
+        api.ajax({
+            url: WWW + 'app/thread_index?tid=' + api.pageParam.tid,
+            method: 'get',
+            timeout: 30,
+            dataType: 'json',
+            returnAll: false
+        }, function (ret, err) {
+            if (ret) {
+                var html = template('tmp-thread', ret);
+                $api.html($api.byId('thread'), html);
+                loding_hide()
+                // console.log(JSON.stringify(ret))
+            } else {
+                api.alert({
+                    msg: ('错误码：' + err.code + '；错误信息：' + err.msg + '网络状态码：' + err.statusCode)
+                });
+            };
+        });
+    }
+
+</script>

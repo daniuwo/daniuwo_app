@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>菜单页面</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css" />
+    <style>
+        html,body {
+            background: rgba(214, 214, 214, 0.5);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: 1em;
+            font-weight: 300;
+        }
+
+        header {
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        header .header-r {
+            position: absolute;
+            right: 0;
+            padding: 0 20px;
+            z-index: 100;
+        }
+
+        .comiis_gobtn_top {
+            margin: -25px 20px 20px;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .comiis_gobtn_top:after {
+            content: "";
+            display: block;
+            height: 0;
+            font-size: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        .fttime_rq {
+            color: #616161;
+            height: 50px;
+            line-height: 48px;
+            font-size: 58px;
+            font-family: 'Helvetica';
+        }
+
+        .fttime_xq {
+            color: #616161;
+            height: 50px;
+            margin: 0 8px;
+        }
+
+        .fttime_xq span {
+            display: block;
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+        .fttime_xq em {
+            display: block;
+            font-size: 12px;
+            line-height: 12px;
+        }
+
+        .fttime_xq span {
+            display: block;
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+        .fttime_nl {
+            width: 50px;
+            height: 45px;
+            border-radius: 3px;
+            background: #EB3331 !important;
+        }
+
+        .fttime_nl h2 {
+            color: #fff;
+            height: 19px;
+            line-height: 22px;
+            text-align: center;
+        }
+
+        .fttime_nl p {
+            color: #929090;
+            height: 22px;
+            line-height: 24px;
+            margin: 2px;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 3px;
+            background: #ffffff;
+        }
+
+        .z {
+            float: left;
+        }
+
+        .comiis_bigad_p a {
+            position: relative;
+            margin: 12px;
+        }
+
+        .comiis_bigad a em {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            display: block;
+            height: 18px;
+            line-height: 18px;
+            background: rgba(0, 0, 0, 0.6);
+            font-size: 12px;
+            color: #fff;
+            padding: 0px 4px;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .comiis_bigad a img {
+            display: block;
+            width: 100%;
+        }
+
+        .comiis_gobtn_box {
+            width: 100%;
+            padding-top: 20px;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            z-index: 210;
+            background: #fff;
+        }
+
+        .comiis_gobtn_box h2 {
+            color: #a7a7a7;
+            font-size: 14px;
+            padding: 0 20px 10px;
+        }
+
+        .comiis_gobtn_box ul {
+            padding: 0 15px 5px;
+            overflow: hidden;
+        }
+
+        .comiis_gobtn_box ul li {
+            float: left;
+            width: 25%;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .comiis_gobtn_box ul li a {
+            color: #333333;
+            display: block;
+            padding: 8px 0;
+        }
+
+        .comiis_gobtn_box ul li span {
+            display: block;
+            width: 34px;
+            height: 34px;
+            line-height: 34px;
+            padding: 10px 10px 10px 11px;
+            margin: 0 auto 5px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #FF9900;
+        }
+        .comiis_gobtn_box ul li span i{
+            font-size: 25px;
+            color: #fff
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a tapmode="hover" class="header-r" onclick="api.closeFrame({name: 'caidan'});"><i class="iconfont icon-guanbi"></i></a>
+    </header>
+    <!-- 日历 -->
+    <div class="comiis_gobtn_top cl">
+        <div class="comiis_fttime cl" id="comiis_show_datebox">
+            <div class="z fttime_rq f_b">02</div>
+            <div class="z fttime_xq"><span class="f_b">星期六</span><em class="f_d">/</em><span class="f_b">2019年02月</span></div>
+            <div class="z fttime_nl bg_0">
+                <h2 class="f_f">腊月</h2>
+                <p class="bg_f f_c">廿八</p>
+            </div>
+        </div>
+    </div>
+    <!-- 推广 -->
+    <div class="comiis_bigad comiis_bigad_p cl">
+        <a href="javascript:;">
+            <em>推广</em>
+            <img src="http://app.comiis.com/chunjie/005.jpg" width="100%" class="comiis_noloadimage">
+        </a>
+    </div>
+    <!-- 菜单 -->
+    <div class="comiis_gobtn_box bg_f b_t cl">
+        <h2 class="f_c">选择您要发布的东东...</h2>
+        <ul class="cl">
+            <li><a href="javascript:;"><span style="background:#FF9900;"><i class="iconfont icon-biaoqing"></i></span>签到</a></li>
+            <li><a href="javascript:;"><span style="background:#F37D7D;"><i class="iconfont icon-mn_xiaoxi3"></i></span>发帖子</a></li>
+            <li><a href="javascript:;"><span style="background:#91B9EB;"><i class="iconfont icon-xiaoxi2"></i></span>新闻爆料</a></li>
+            <li><a href=""><span style="background:#9DCA06;"><i class="iconfont icon-quanzi"></i></span>发圈子</a></li>
+            <li><a href=""><span style="background:#3EBBFD;"><i class="iconfont icon-gonggao"></i></span>记心情</a></li>
+            <li><a href=""><span style="background:#FFB300;"><i class="iconfont icon-tuijian1"></i></span>写日志</a></li>
+            <li><a href=""><span style="background:#9DCA08;"><i class="iconfont icon-tupian"></i></span>发相册</a></li>
+            <li><a href=""><span style="background:#DA99DB;"><i class="iconfont icon-shoucang3"></i></span>发朋友圈</a></li>
+        </ul>
+        <div class="comiis_gobtn_foot cl">
+        </div>
+    </div>
+</body>
+
+</html>
